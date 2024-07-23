@@ -1,6 +1,6 @@
 type DivComp = {
     children: React.ReactNode
-    className: string
+    className?: string
 }
 
 const DivComp = ({ children, className }: DivComp) => {

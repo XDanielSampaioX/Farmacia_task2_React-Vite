@@ -1,11 +1,14 @@
 import { Button } from "react-bootstrap";
 
+type ButtonPrimary = {
+    children: React.ReactNode
+    onClick?: () => void
+}
 
-const ButtonPrimary = ({children} : {children : React.ReactNode}) => {
-
+const ButtonPrimary = ({children, onClick} : ButtonPrimary) => {
     return (
         <>
-            <Button className="btn btn-primary"> {children}</Button>
+            <Button className="btn btn-primary" onClick={onClick}> {children}</Button>
         </>
     )
 }
