@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../../utils/api";
 import DivComp from "../DivComp";
 import Table from "../Tables/Table";
 import TableBody from "../Tables/TableBody";
@@ -6,11 +7,10 @@ import TableHead from "../Tables/TableHead";
 import TRow from "../Tables/TableRow";
 import TData from "../Tables/TD";
 import THead from "../Tables/TH";
-import api from "../../utils/api";
-import ButtonVisualizar from "../Buttons/ButtonSVG/ButtonVisualizar";
-import ButtonEditar from "../Buttons/ButtonSVG/ButtonEditar";
-import ButtonExcluir from "../Buttons/ButtonSVG/ButtonExcluir";
-import ButtonEstoque from "../Buttons/ButtonSVG/ButtonEstoque";
+import ButtonModalVisualizar from "../Buttons/ButtonModalVisualizar";
+import ButtonModalAtualizar from "../Buttons/ButtonModalAtualizar";
+import ButtonModalExcluir from "../Buttons/ButtonModalExcluir";
+import ButtonModalEstoque from "../Buttons/ButtonModalEstoque";
 
 const MontaTabela = () => {
 
@@ -23,20 +23,22 @@ const MontaTabela = () => {
         fabricacao: string;
         validade: string;
     }
-    
+
 
     const [remedios, setRemedios] = useState<remedios[]>([]);
 
+    // useEffect: Manipula o ciclo de vida do comnponente, e tambem executa assim que o componente carregar ou sair da tela.
     useEffect(() => {
-        api.get(`/`).then((response) => {
-            setRemedios(response.data|| [])
-        }).catch(error => {
-            console.error("Error ao buscar remedios: " , error || []);
-        });
-    }
-)
-
-console.log (api.get)
+        const resultadoRemedios = async () => {
+            try {
+                const response = await api.get(`/remedios`);
+                setRemedios(response.data || [])
+            } catch (error) {
+                alert("API não encontrada")
+            }
+        }
+        resultadoRemedios();
+    });
 
     return (
         <Table>
@@ -64,10 +66,10 @@ console.log (api.get)
                         <TData>{medicamento.validade}</TData>
                         <TData>
                             <DivComp>
-                                <ButtonVisualizar />
-                                <ButtonEditar />
-                                <ButtonExcluir />
-                                <ButtonEstoque />
+                                <ButtonModalVisualizar />
+                                <ButtonModalAtualizar />
+                                <ButtonModalExcluir />
+                                <ButtonModalEstoque />
                             </DivComp>
                         </TData>
                     </TRow>

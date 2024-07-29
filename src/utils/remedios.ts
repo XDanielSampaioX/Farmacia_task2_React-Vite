@@ -10,11 +10,6 @@ type Remedio = {
     validade: string;
 };
 
-export const fetchRemedios = async () => {
-    const response = await api.get<{ remedios: Remedio[] }>("/remedios");
-    return response.data.remedios;
-};
-
 export const addRemedio = async (remedio: Omit<Remedio, 'id'>) => {
     const response = await api.post<Remedio>("/remedios", remedio);
     return response.data;

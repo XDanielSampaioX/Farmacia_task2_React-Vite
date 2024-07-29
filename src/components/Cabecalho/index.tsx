@@ -1,4 +1,4 @@
-import ButtonPrimary from "../Buttons/ButtonPrimary";
+import { Button } from "react-bootstrap";
 import DivComp from "../DivComp";
 import InputRemedio from "../InputRemedio";
 import LogoFarma from "../LogoFarma";
@@ -15,10 +15,10 @@ const Header = () => {
                 <DivComp className="d-sm-flex align-items-center gap-1">
                     Buscar remédios:
                     <InputRemedio />
-                    <ButtonPrimary>Buscar</ButtonPrimary>
+                    <Button variant="primary">Buscar</Button>
                 </DivComp>
                 <DivComp className="d-sm-flex align-items-center gap-2">
-                    <ButtonPrimary>Cadastrar</ButtonPrimary>
+                    <Button variant="primary">Cadastrar</Button>
                 </DivComp>
             </DivComp>
     )
