@@ -49,7 +49,7 @@ const MontaTabela = () => {
                         <td>{medicamento.validade}</td>
                         <td>
                             <Container className="d-flex gap-1">
-                                <ButtonModalVisualizar props={medicamento.id}></ButtonModalVisualizar>
+                                <ButtonModalVisualizar id={parseInt(medicamento.id)}></ButtonModalVisualizar>
                                 <ButtonModalAtualizar />
                                 <ButtonModalExcluir />
                                 <ButtonModalEstoque />
