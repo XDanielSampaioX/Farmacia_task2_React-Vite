@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import visualizarRemedios from '../../../utils/remedios';
-import { useEffect, useState } from 'react';
+import visualizarRemedios from '../../../utils/visualizar';
 
 type idType = {
   id: number
@@ -52,19 +52,20 @@ const Example = ({id} : idType) => {
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Dados do Remédio</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {remedio ? (
             <>
-              <p>id: {remedio.id}</p>
               <p>Nome: {remedio.nome}</p>
-              <p>Descrição: {remedio.fabricacao}</p>
-              {/* Exiba outros detalhes do remédio conforme necessário */}
+              <p>Fabricante: {remedio.fabricante}</p>
+              <p>Protocolo Clinico: {remedio.protocolo_clinico}</p>
+              <p>Lote: {remedio.lote}</p>
+              <p>Fabricacao: {remedio.fabricacao}</p>
+              <p>Validade: {remedio.validade}</p>
             </>
           ) : (
             <p>Nenhum remédio encontrado</p>

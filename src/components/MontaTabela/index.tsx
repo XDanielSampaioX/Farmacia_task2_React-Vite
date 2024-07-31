@@ -49,9 +49,9 @@ const MontaTabela = () => {
                         <td>{medicamento.validade}</td>
                         <td>
                             <Container className="d-flex gap-1">
-                                <ButtonModalVisualizar id={parseInt(medicamento.id)}></ButtonModalVisualizar>
-                                <ButtonModalAtualizar />
-                                <ButtonModalExcluir />
+                                <ButtonModalVisualizar id={parseInt(medicamento.id)}/>
+                                <ButtonModalAtualizar id={parseInt(medicamento.id)} />
+                                <ButtonModalExcluir id={parseInt(medicamento.id)}/>
                                 <ButtonModalEstoque />
                             </Container>
                         </td>
