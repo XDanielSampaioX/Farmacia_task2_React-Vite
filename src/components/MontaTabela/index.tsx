@@ -1,29 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../../utils/api";
-import DivComp from "../DivComp";
-import Table from "../Tables/Table";
-import TableBody from "../Tables/TableBody";
-import TableHead from "../Tables/TableHead";
-import TRow from "../Tables/TableRow";
-import TData from "../Tables/TD";
-import THead from "../Tables/TH";
-import ButtonModalVisualizar from "../Buttons/ButtonModalVisualizar";
 import ButtonModalAtualizar from "../Buttons/ButtonModalAtualizar";
-import ButtonModalExcluir from "../Buttons/ButtonModalExcluir";
 import ButtonModalEstoque from "../Buttons/ButtonModalEstoque";
+import ButtonModalExcluir from "../Buttons/ButtonModalExcluir";
+import ButtonModalVisualizar from "../Buttons/ButtonModalVisualizar";
+import Container from "../Container";
 
 const MontaTabela = () => {
-
-    type remedios = {
-        id: string;
-        nome: string;
-        fabricante: string;
-        protocolo_clinico: string;
-        lote: string;
-        fabricacao: string;
-        validade: string;
-    }
-
 
     const [remedios, setRemedios] = useState<remedios[]>([]);
 
@@ -38,44 +21,44 @@ const MontaTabela = () => {
             }
         }
         resultadoRemedios();
-    });
+    }), [];
 
     return (
-        <Table>
-            <TableHead>
-                <TRow>
-                    <THead>Id</THead>
-                    <THead>Nome</THead>
-                    <THead>Fabricante</THead>
-                    <THead>Protocolo Clinico</THead>
-                    <THead>Lote</THead>
-                    <THead>Fabricação</THead>
-                    <THead>Validade</THead>
-                    <THead>Opções</THead>
-                </TRow>
-            </TableHead>
-            <TableBody>
+        <table className="table table-primary table-hover table-striped">
+            <thead className="text-center">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Fabricante</th>
+                    <th>Protocolo Clinico</th>
+                    <th>Lote</th>
+                    <th>Fabricação</th>
+                    <th>Validade</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody className="text-center">
                 {remedios.map((medicamento) => (
-                    <TRow key={medicamento.id}>
-                        <TData>{medicamento.id}</TData>
-                        <TData>{medicamento.nome}</TData>
-                        <TData>{medicamento.fabricante}</TData>
-                        <TData>{medicamento.protocolo_clinico}</TData>
-                        <TData>{medicamento.lote}</TData>
-                        <TData>{medicamento.fabricacao}</TData>
-                        <TData>{medicamento.validade}</TData>
-                        <TData>
-                            <DivComp>
-                                <ButtonModalVisualizar />
+                    <tr key={medicamento.id}>
+                        <td>{medicamento.id}</td>
+                        <td>{medicamento.nome}</td>
+                        <td>{medicamento.fabricante}</td>
+                        <td>{medicamento.protocolo_clinico}</td>
+                        <td>{medicamento.lote}</td>
+                        <td>{medicamento.fabricacao}</td>
+                        <td>{medicamento.validade}</td>
+                        <td>
+                            <Container className="d-flex gap-1">
+                                <ButtonModalVisualizar props={medicamento.id}></ButtonModalVisualizar>
                                 <ButtonModalAtualizar />
                                 <ButtonModalExcluir />
                                 <ButtonModalEstoque />
-                            </DivComp>
-                        </TData>
-                    </TRow>
+                            </Container>
+                        </td>
+                    </tr>
                 ))}
-            </TableBody>
-        </Table>
+            </tbody>
+        </table>
     );
 }
 
